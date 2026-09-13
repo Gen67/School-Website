@@ -6,7 +6,7 @@ import Field from "./Field";
 import { COURSE_SUBJECTS } from "../data/studentsDb";
 import { generateStudentIdNo, generateStudentNo } from "../utils/idGenerators";
 
-export default function Enrollment({ students, onBack, onEnrolled }) {
+export default function Enrollment({ students, onBack, onEnrolled, onContinue }) {
   const [form, setForm] = useState({ name: "", age: "", address: "", contact: "", email: "", course: "BSCS" });
   const [result, setResult] = useState(null);
 
@@ -42,10 +42,10 @@ export default function Enrollment({ students, onBack, onEnrolled }) {
           <p><span className="font-medium">Course:</span> {result.course}</p>
         </div>
         <button
-          onClick={() => onEnrolled(result, true)}
+          onClick={() => onContinue(result)}
           className="w-full rounded-md bg-green-700 text-white text-sm font-medium py-2.5 hover:bg-green-800 transition-colors"
         >
-          Continue to Student Portal
+          Proceed to Payment
         </button>
       </Card>
     );
@@ -89,4 +89,5 @@ Enrollment.propTypes = {
   ).isRequired,
   onBack: PropTypes.func.isRequired,
   onEnrolled: PropTypes.func.isRequired,
+  onContinue: PropTypes.func.isRequired,
 };
